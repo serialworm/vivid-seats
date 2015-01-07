@@ -145,7 +145,6 @@ var VividSeats = (function(){
     return obj;
     };
   var _simulateNetwork = function(onSuccess, onError) {
-    console.log()
     var callback = Math.random() <= 0.9 ? onSuccess : onError;
     setTimeout(function(){callback()}, Math.random() * 100);
   };
@@ -171,13 +170,3 @@ var VividSeats = (function(){
     }
   }
 })();
-console.log(
-  VividSeats.eventService.all(
-    function(){
-      console.log(arguments);
-    },
-    function(){
-      console.log('bad');
-    }
-  )
-);
