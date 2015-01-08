@@ -12,18 +12,34 @@
   <script src="js/app.js"></script>
 </head>
 <body ng-controller="EventsListCtrl">
+  <div id="main">
   <h1>Vivid Seats Events</h1>
-  <table class="table table-bordered">
-    <tr>
-      <th>Event Name</th>
-      <th>Date</th>
-      <th>Venue</th>
-    </tr>
-    <tr ng-repeat="event in events">
-      <td>{{event.name}}</td>
-      <td>{{event.date}}</td>
-      <td>{{event.venue.name}}</td>
-    </tr>
-  </table>
+
+    <ul class="nav nav-pills">
+      <li role="presentation" ng-class="class"><a href="#" ng-click="clearFilter()">All Events</a></li>
+      <li role="presentation"><a href="#" ng-click="getUpcomingEvents()">Upcoming Events</a></li>
+      <li role="presentation"><a href="#" ng-click="getLocalEvents()">Local Events</a></li>
+    </ul>
+
+    <table class="table table-bordered">
+      <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+        <th>Venue</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+      <tr ng-repeat="event in events | orderBy:'date' | filter:filters">
+        <td>{{event.name}}</td>
+        <td>{{event.date | date:"MM/dd/yyyy '@' h:mma"}}</td>
+        <td>{{event.venue.name}}</td>
+        <td>{{event.venue.city}}</td>
+        <td>{{event.venue.state}}</td>
+        <td><a href="#">remove</a> / <a href="#">edit</a></td>
+      </tr>
+    </table>
+    <button class="btn">Add</button>
+  </div>
 </body>
 </html>
